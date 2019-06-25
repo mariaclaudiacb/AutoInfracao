@@ -1,41 +1,45 @@
 package br.gov.sc.ciasc.transito.ContagemPontos.domain;
+import java.time.LocalDate;
 
 import lombok.Data;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Objects;
 
 @Data
 public class AutoInfracao {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String codigoInfracao;
     private String placa;
     private String numeroAuto;
-    private String codigoInfracao;
     private String pontos;
     private String situacao;
     private Long orgao;
-    //LocalDate dataAutuacao;
+    private LocalDate dataAutuacao;
 
 
-    public String getNumeroDePontos() {
-        String[] ponto = pontos.split("-");
-        if(ponto[0].equals("4")||ponto[0].equals("5")||ponto[0].equals("7")) {
-            return ponto[0];
+    public int getNumeroDePontos() {
+        if(getVerificarPadraoPontuacao()) {
+            String[] ponto = pontos.split("-");
+            if (ponto[0].equals("3") || ponto[0].equals("4") || ponto[0].equals("5") || ponto[0].equals("7")) {
+                return Integer.parseInt(ponto[0]);
+            }
         }
-        String erro = "Pontuação inválida";
-        return erro;
+            throw new IllegalArgumentException("Pontuação Inválida");
     }
 
     public boolean getVerificarPadraoPontuacao(){
-        String[] ponto = new String[pontos.length()];
-        if(ponto[0].equals("4")|| ponto[0].equals("5") || ponto[0].equals("7")) {
+        if(pontos.startsWith("3-") ||pontos.startsWith("4-")|| pontos.startsWith("5-") || pontos.startsWith("7-")) {
             return true;
         }
-        if(ponto[1].equals("-")){
-            return true;
-        }
-        if(pontos.equals("4-Média")|| pontos.equals("5-Grave")||pontos.equals("7-Gravíssima")){
+        if(pontos.equals("3-Leve") ||pontos.equals("4-Média")|| pontos.equals("5-Grave")||pontos.equals("7-Gravíssima")){
             return true;
         }
 
         return false;
     }
+
 }

@@ -1,4 +1,4 @@
-package br.gov.sc.ciasc.transito.ContagemPontos.web;
+/*package br.gov.sc.ciasc.transito.ContagemPontos.web;
 
 import br.gov.sc.ciasc.transito.ContagemPontos.domain.AutoInfracao;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,3 +16,4 @@ public class TesteController {
         return ai.getNumeroDePontos();
     }
 }
+*/

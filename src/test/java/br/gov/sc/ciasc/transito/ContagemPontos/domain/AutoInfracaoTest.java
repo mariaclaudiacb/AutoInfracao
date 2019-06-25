@@ -1,5 +1,6 @@
 package br.gov.sc.ciasc.transito.ContagemPontos.domain;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -14,14 +15,16 @@ public class AutoInfracaoTest {
         // assertEquals("7", AutoInfracao.numeroDePontos(pontos));
 
         AutoInfracao ai = new AutoInfracao();
-        ai.setPontos("7-GRAVISSIMA");
-        assertEquals("7", ai.getNumeroDePontos());
+        ai.setPontos("7-Gravíssima");
+        assertEquals(7, ai.getNumeroDePontos());
+
 
     }
+
     @Test
     public void VerificarPadraoPontuacao(){
         AutoInfracao ai = new AutoInfracao();
-        ai.setPontos("8-Gravivissima");
+        ai.setPontos("7-Gravivissima");
         assertFalse(false);
     }
     @Test
@@ -30,4 +33,9 @@ public class AutoInfracaoTest {
         ai.setPontos("7-Gravissima");
         assertFalse(false);
     }
+    @Test
+    public void VerificarContagemPontos(){
+        AutoInfracao ai1 = new AutoInfracao();
+    }
+
 }
