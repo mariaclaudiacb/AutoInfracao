@@ -173,7 +173,27 @@ public class AutoInfracaoTest {
 
      infracaoList = Arrays.asList(ai, ai2, ai3,ai4,ai5,ai6,ai7,ai8,ai9);
      AutoInfracaoService ais = new AutoInfracaoService();
+
      assertEquals(32, ais.inicioContagemPontos(infracaoList, LocalDate.of(2014,12,03)));
     }
 
+    @Test
+    public void veriicarPeriodo(){
+        List<AutoInfracao> infracaoList = new ArrayList<>();
+        AutoInfracao ai = new AutoInfracao();
+        ai.setPontos("7-Grave");
+        ai.setDataAutuacao(LocalDate.of(2014,11,28));
+
+        AutoInfracao ai2 = new AutoInfracao();
+        ai2.setPontos("7-Grave");
+        ai2.setDataAutuacao(LocalDate.of(2014, 12, 20));
+
+        AutoInfracao ai3 = new AutoInfracao();
+        ai3.setPontos("7-Grave");
+        ai3.setDataAutuacao(LocalDate.of(2015, 1, 22));
+
+        infracaoList = Arrays.asList(ai, ai2, ai3);
+        AutoInfracaoService
+        assertTrue(ais.);
+    }
 }
