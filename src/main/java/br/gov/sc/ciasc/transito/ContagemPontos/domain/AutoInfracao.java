@@ -32,9 +32,7 @@ public class AutoInfracao {
     }
 
     public boolean getVerificarPadraoPontuacao(){
-        if(pontos.startsWith("3-") ||pontos.startsWith("4-")|| pontos.startsWith("5-") || pontos.startsWith("7-")) {
-            return true;
-        }
+
         if(pontos.equals("3-Leve") ||pontos.equals("4-Média")|| pontos.equals("5-Grave")||pontos.equals("7-Gravíssima")){
             return true;
         }
