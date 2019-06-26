@@ -104,31 +104,76 @@ public class AutoInfracaoTest {
      infracaoList = Arrays.asList(ai1, ai2, ai3);
 
      AutoInfracaoService ais = new AutoInfracaoService();
-     assertTrue(ais.carteiraSuspensa(infracaoList, LocalDate.of(2019, 5, 8)));
+     assertTrue(ais.VerificaCNHAnoAFrente(infracaoList, LocalDate.of(2019, 5, 8)));
 
  }
+ @Test
+    public void VerificaPontuacaoAtual(){
+        List<AutoInfracao> infracaoList = new ArrayList<>();
+        AutoInfracao ai1 = new AutoInfracao();
+        ai1.setPontos("5-Grave");
+        ai1.setDataAutuacao(LocalDate.of(2019,6,26));
+
+        AutoInfracao ai2 = new AutoInfracao();
+        ai2.setPontos("3-Leve");
+        ai2.setDataAutuacao(LocalDate.of(2018,6,25));
+
+        AutoInfracao ai3 = new AutoInfracao();
+        ai3.setPontos("7-Gravíssima");
+        ai3.setDataAutuacao(LocalDate.of(2019,2,5));
+
+        AutoInfracao ai4 = new AutoInfracao();
+        ai4.setPontos("5-Grave");
+        ai4.setDataAutuacao(LocalDate.of(2018,10,31));
+
+        infracaoList = Arrays.asList(ai1,ai2,ai3,ai4);
+        AutoInfracaoService ais = new AutoInfracaoService();
+        assertTrue(ais.VerificaCNHAnoAtras(infracaoList,LocalDate.of(2019,6,26)));
+    }
  @Test
     public void VerificaInicioContagemPontos(){
      List<AutoInfracao> infracaoList = new ArrayList<>();
      AutoInfracao ai = new AutoInfracao();
-     ai.setPontos("3-Leve");
-     ai.setDataAutuacao(LocalDate.of(2014,4,2));
+     ai.setPontos("4-Média");
+     ai.setDataAutuacao(LocalDate.of(2014,11,28));
 
      AutoInfracao ai2 = new AutoInfracao();
      ai2.setPontos("4-Média");
-     ai2.setDataAutuacao(LocalDate.of(2014, 10, 25));
+     ai2.setDataAutuacao(LocalDate.of(2014, 12, 20));
 
      AutoInfracao ai3 = new AutoInfracao();
-     ai3.setPontos("7-Gravíssima");
-     ai3.setDataAutuacao(LocalDate.of(2019, 4, 3));
+     ai3.setPontos("3-Leve");
+     ai3.setDataAutuacao(LocalDate.of(2015, 1, 22));
 
      AutoInfracao ai4 = new AutoInfracao();
-     ai4.setPontos("5-Grave");
-     ai4.setDataAutuacao(LocalDate.of(2019, 1,21));
+     ai4.setPontos("4-Média");
+     ai4.setDataAutuacao(LocalDate.of(2015, 3,30));
 
-     infracaoList = Arrays.asList(ai, ai2, ai3,ai4);
+     AutoInfracao ai5 = new AutoInfracao();
+     ai5.setPontos("4-Média");
+     ai5.setDataAutuacao(LocalDate.of(2016, 7,4));
+
+     AutoInfracao ai6 = new AutoInfracao();
+     ai6.setPontos("4-Média");
+     ai6.setDataAutuacao(LocalDate.of(2016, 9,14));
+
+     AutoInfracao ai7 = new AutoInfracao();
+     ai7.setPontos("4-Média");
+     ai7.setDataAutuacao(LocalDate.of(2016, 12,26));
+
+     AutoInfracao ai8 = new AutoInfracao();
+     ai8.setPontos("4-Média");
+     ai8.setDataAutuacao(LocalDate.of(2017, 8,3));
+
+
+     AutoInfracao ai9 = new AutoInfracao();
+     ai9.setPontos("5-Grave");
+     ai9.setDataAutuacao(LocalDate.of(2018, 3,3));
+
+
+     infracaoList = Arrays.asList(ai, ai2, ai3,ai4,ai5,ai6,ai7,ai8,ai9);
      AutoInfracaoService ais = new AutoInfracaoService();
-     assertEquals(16, ais.inicioContagemPontos(infracaoList, LocalDate.of(2014,4,03)));
+     assertEquals(32, ais.inicioContagemPontos(infracaoList, LocalDate.of(2014,12,03)));
     }
 
 }

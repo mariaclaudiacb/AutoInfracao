@@ -37,7 +37,7 @@ public class AutoInfracaoService {
 
     }
 
-    public boolean carteiraSuspensa(List<AutoInfracao> infracaoList, LocalDate dataEspecifica) {
+    public boolean VerificaCNHAnoAFrente(List<AutoInfracao> infracaoList, LocalDate dataEspecifica) {
         int pontuacao = 0;
 
         for (AutoInfracao autoInfracao : infracaoList) {
@@ -52,7 +52,20 @@ public class AutoInfracaoService {
         return false;
     }
 
+    public boolean VerificaCNHAnoAtras(List<AutoInfracao> infracaoList, LocalDate dataEspecifica) {
+        int pontuacao = 0;
 
+        for (AutoInfracao autoInfracao : infracaoList) {
+            if (autoInfracao.getDataAutuacao().isAfter(dataEspecifica) && autoInfracao.getDataAutuacao().isBefore(dataEspecifica.minusYears(1))); {
+                pontuacao += autoInfracao.getNumeroDePontos();
+            }
+        }
+        if (pontuacao >= 20) {
+            return true;
+        }
+
+        return false;
+    }
     public int inicioContagemPontos (List<AutoInfracao> infracaoList, LocalDate dataEspecifica) {
         int pontuacao = 0;
         for (AutoInfracao autoInfracao : infracaoList) {
@@ -62,11 +75,6 @@ public class AutoInfracaoService {
         }
         return pontuacao;
     }
-
-
-
-
-
 }
 
 
