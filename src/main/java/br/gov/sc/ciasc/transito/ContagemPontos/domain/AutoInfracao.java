@@ -23,6 +23,9 @@ public class AutoInfracao {
 
     public int getNumeroDePontos() {
         if(getVerificarPadraoPontuacao()) {
+            if(situacao.equals("Em recurso")){
+                return 0;
+            }
             String[] ponto = pontos.split("-");
             if (ponto[0].equals("3") || ponto[0].equals("4") || ponto[0].equals("5") || ponto[0].equals("7")) {
                 return Integer.parseInt(ponto[0]);
@@ -40,4 +43,10 @@ public class AutoInfracao {
         return false;
     }
 
+    public boolean getVerificarSituacao(){
+        if(situacao.equals("Ativo") || situacao.equals("Em recurso")){
+            return true;
+        }
+        return false;
+    }
 }
